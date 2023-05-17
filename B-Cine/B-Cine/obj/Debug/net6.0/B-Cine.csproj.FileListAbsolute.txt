@@ -1,0 +1,12 @@
+C:\Prog\UPB\Objetos\8-Cine\B-Cine\B-Cine\obj\Debug\net6.0\B-Cine.csproj.AssemblyReference.cache
+C:\Prog\UPB\Objetos\8-Cine\B-Cine\B-Cine\obj\Debug\net6.0\B-Cine.GeneratedMSBuildEditorConfig.editorconfig
+C:\Prog\UPB\Objetos\8-Cine\B-Cine\B-Cine\obj\Debug\net6.0\B-Cine.AssemblyInfoInputs.cache
+C:\Prog\UPB\Objetos\8-Cine\B-Cine\B-Cine\obj\Debug\net6.0\B-Cine.AssemblyInfo.cs
+C:\Prog\UPB\Objetos\8-Cine\B-Cine\B-Cine\obj\Debug\net6.0\B-Cine.csproj.CoreCompileInputs.cache
+C:\Prog\UPB\Objetos\8-Cine\B-Cine\B-Cine\bin\Debug\net6.0\B-Cine.deps.json
+C:\Prog\UPB\Objetos\8-Cine\B-Cine\B-Cine\bin\Debug\net6.0\B-Cine.dll
+C:\Prog\UPB\Objetos\8-Cine\B-Cine\B-Cine\bin\Debug\net6.0\B-Cine.pdb
+C:\Prog\UPB\Objetos\8-Cine\B-Cine\B-Cine\obj\Debug\net6.0\B-Cine.dll
+C:\Prog\UPB\Objetos\8-Cine\B-Cine\B-Cine\obj\Debug\net6.0\refint\B-Cine.dll
+C:\Prog\UPB\Objetos\8-Cine\B-Cine\B-Cine\obj\Debug\net6.0\B-Cine.pdb
+C:\Prog\UPB\Objetos\8-Cine\B-Cine\B-Cine\obj\Debug\net6.0\ref\B-Cine.dll
