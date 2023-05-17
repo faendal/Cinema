@@ -166,6 +166,7 @@
             cb_horarios.Name = "cb_horarios";
             cb_horarios.Size = new Size(212, 28);
             cb_horarios.TabIndex = 28;
+            cb_horarios.SelectedIndexChanged += cb_horarios_SelectedIndexChanged;
             // 
             // cb_cartelera
             // 
@@ -174,6 +175,7 @@
             cb_cartelera.Name = "cb_cartelera";
             cb_cartelera.Size = new Size(212, 28);
             cb_cartelera.TabIndex = 27;
+            cb_cartelera.SelectedIndexChanged += cb_cartelera_SelectedIndexChanged;
             // 
             // cb_combos
             // 
@@ -553,6 +555,7 @@
             b_recargar.TabIndex = 36;
             b_recargar.Text = "Recargar Saldo";
             b_recargar.UseVisualStyleBackColor = true;
+            b_recargar.Click += b_recargar_Click;
             // 
             // cb_recarga
             // 
@@ -570,6 +573,7 @@
             b_comprar_combo.TabIndex = 34;
             b_comprar_combo.Text = "Comprar Combo";
             b_comprar_combo.UseVisualStyleBackColor = true;
+            b_comprar_combo.Click += b_comprar_combo_Click;
             // 
             // label7
             // 

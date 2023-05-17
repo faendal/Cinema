@@ -144,5 +144,10 @@ namespace B_Cine
             }
             catch (Exception error) { throw new Exception("Ocurrió un error recargando el saldo\n" + error); }
         }
+
+        public override string ToString()
+        {
+            return Usuario;
+        }
     }
 }

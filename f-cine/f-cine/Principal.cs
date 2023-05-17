@@ -4,7 +4,11 @@ namespace f_cine
     public partial class Principal : Form
     {
         Multiplex multiplex;
-        List<string> l_usuarios;
+        List<Persona> l_personas;
+        Cliente cliente_seleccionado;
+        Taquillero taquillero_seleccionado;
+        List<byte> boletas_g;
+        List<byte> boletas_p;
 
         public Principal()
         {
@@ -14,8 +18,8 @@ namespace f_cine
                 multiplex = new Multiplex();
                 multiplex.Crear_cliente(1, "Admin", "123456789", "admin", "1234");
                 dt_fecha_hora.Format = DateTimePickerFormat.Custom;
-                l_usuarios = new List<string> { multiplex.L_clientes[0].Usuario };
-                cb_usuario.DataSource = l_usuarios;
+                l_personas = new List<Persona> { multiplex.L_clientes[0] };
+                cb_usuario.DataSource = l_personas;
                 List<byte> edades = new List<byte>
                 {
                     (byte)Pelicula.l_edades_minimas.v1,
@@ -45,7 +49,28 @@ namespace f_cine
                     Pelicula.l_generos.Thriller.ToString(),
                 };
                 cb_genero.DataSource = generos;
+                List<uint> l_recarga = new List<uint>
+                {
+                    (uint)Persona.l_recargas.v1,
+                    (uint)Persona.l_recargas.v2,
+                    (uint)Persona.l_recargas.v3,
+                    (uint)Persona.l_recargas.v4,
+                    (uint)Persona.l_recargas.v5,
+                    (uint)Persona.l_recargas.v6,
+                    (uint)Persona.l_recargas.v7,
+                    (uint)Persona.l_recargas.v8,
+                    (uint)Persona.l_recargas.v9,
+                    (uint)Persona.l_recargas.v10
+                };
+                cb_recarga.DataSource = l_recarga;
+                List<byte> l_combos = new List<byte> { 1, 2, 3, 4, 5 };
+                cb_combos.DataSource = l_combos;
                 groupBox5.Enabled = false;
+                boletas_g = new List<byte> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+                boletas_p = new List<byte> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+                cb_general.DataSource = boletas_g;
+                cb_preferencial.DataSource = boletas_p;
+
             }
             catch (Exception error) { MessageBox.Show("Ocurrió un error construyendo el form\n" + error); }
         }
@@ -54,39 +79,6 @@ namespace f_cine
         {
             try
             {
-                //Llenado de los cb de sillas
-                for (byte i = 0; i <= 10; i++)
-                {
-                    cb_general.Items.Add((byte)i);
-                    cb_preferencial.Items.Add((byte)i);
-                }
-                tb_puntosp.Text = "0";
-
-                //Verficiacion de puntos para asignar categoría
-                string texto = tb_puntosp.Text;
-                int puntos;
-
-                puntos = int.Parse(texto);
-
-                if (puntos < 100)
-                    tb_categoriap.Text = "Normal";
-                else if (puntos < 150)
-                    tb_categoriap.Text = "Platino";
-                else
-                    tb_categoriap.Text = "Oro";
-
-                //Llenado de combos
-                cb_combos.Items.Add("0");
-                cb_combos.Items.Add("Combo 1: $25.000");
-                cb_combos.Items.Add("Combo 2: $30.000");
-                cb_combos.Items.Add("Combo 3: $40.000");
-                if (tb_categoriap.Text.Equals("Platino"))
-                    cb_combos.Items.Add("Combo 4: $50.000");
-                else if (tb_categoriap.Text.Equals("Oro"))  //Solo si es una categoria mas avanzada se le muestran las opciones extras de combos
-                {
-                    cb_combos.Items.Add("Combo 4: $50.000");
-                    cb_combos.Items.Add("Combo 5: $60.000");
-                }
             }
             catch (Exception error)
             {
@@ -99,9 +91,29 @@ namespace f_cine
         {
             try
             {
-                if (cb_usuario.SelectedItem.ToString() == "admin")
+                if (cb_usuario.SelectedItem.ToString() == "admin" &&
+                    tb_contrasena_lg.Text == "1234") { groupBox5.Enabled = true; }
+                else
                 {
-                    groupBox5.Enabled = true;
+                    groupBox5.Enabled = false;
+                    if (l_personas[cb_usuario.SelectedIndex] is Cliente)
+                    {
+                        tb_categoriap.Clear();
+                        tb_puntosp.Clear();
+                        tb_saldop.Clear();
+                        cliente_seleccionado = (Cliente)l_personas[cb_usuario.SelectedIndex];
+                        tb_categoriap.Text = cliente_seleccionado.Categoria.ToString();
+                        tb_saldop.Text = cliente_seleccionado.Saldo.ToString();
+                        tb_puntosp.Text = cliente_seleccionado.Puntos_acumulados.ToString();
+                    }
+                    else if (l_personas[cb_usuario.SelectedIndex] is Taquillero)
+                    {
+                        tb_categoriap.Clear();
+                        tb_puntosp.Clear();
+                        tb_saldop.Clear();
+                        taquillero_seleccionado = (Taquillero)l_personas[cb_usuario.SelectedIndex];
+                        tb_saldop.Text = taquillero_seleccionado.Saldo.ToString();
+                    }
                 }
             }
             catch (Exception error) { MessageBox.Show("Ocurrio un error abriendo sesión\n" + error); }
@@ -112,13 +124,6 @@ namespace f_cine
         {
             try
             {
-                byte numSelect = Convert.ToByte(cb_general.SelectedItem);
-
-                cb_preferencial.Items.Clear();
-                for (byte i = 0; i <= 10 - numSelect; i++)
-                {
-                    cb_preferencial.Items.Add((byte)i);
-                }
             }
             catch (Exception error)
             {
@@ -130,13 +135,6 @@ namespace f_cine
         {
             try
             {
-                byte numSelect = Convert.ToByte(cb_preferencial.SelectedItem);
-
-                cb_general.Items.Clear();
-                for (byte i = 0; i <= 10 - numSelect; i++)
-                {
-                    cb_general.Items.Add((byte)i);
-                }
             }
             catch (Exception error)
             {
@@ -148,7 +146,6 @@ namespace f_cine
         {
             try
             {
-                Close();
             }
             catch (Exception error)
             {
@@ -165,9 +162,26 @@ namespace f_cine
         {
             try
             {
-                byte numSelectgen = Convert.ToByte(cb_general.SelectedItem);
-                byte numSelectvip = Convert.ToByte(cb_preferencial.SelectedItem);
-                MessageBox.Show("Usted ha comprado " + numSelectgen + " sillas generales y " + numSelectvip + " sillas VIP");
+                if (cliente_seleccionado != null)
+                {
+                    cliente_seleccionado.Comprar_boletas((Funcion)cb_horarios.SelectedItem,
+                                                          (byte)cb_general.SelectedItem,
+                                                          (byte)cb_preferencial.SelectedItem);
+                    tb_categoriap.Text = cliente_seleccionado.Categoria.ToString();
+                    tb_saldop.Text = cliente_seleccionado.Saldo.ToString();
+                    tb_puntosp.Text = cliente_seleccionado.Puntos_acumulados.ToString();
+
+                }
+                else if (taquillero_seleccionado != null)
+                {
+                    taquillero_seleccionado.Comprar_boletas((Funcion)cb_horarios.SelectedItem,
+                                                          (byte)cb_general.SelectedItem,
+                                                          (byte)cb_preferencial.SelectedItem);
+                    tb_categoriap.Clear();
+                    tb_saldop.Text = taquillero_seleccionado.Saldo.ToString();
+                    tb_puntosp.Clear();
+                }
+                else MessageBox.Show("Ingrese sesión");
             }
             catch (Exception error)
             {
@@ -181,8 +195,9 @@ namespace f_cine
             {
                 multiplex.Crear_cliente(uint.Parse(tb_id.Text), tb_nombre.Text, tb_numero.Text,
                                     tb_usuario.Text, tb_contrasena.Text);
-                l_usuarios.Add(tb_usuario.Text);
-                cb_usuario.DataSource = l_usuarios;
+                l_personas.Add(multiplex.L_clientes[multiplex.L_clientes.Count - 1]);
+                cb_usuario.DataSource = null;
+                cb_usuario.DataSource = l_personas;
                 tb_id.Clear();
                 tb_nombre.Clear();
                 tb_numero.Clear();
@@ -202,6 +217,8 @@ namespace f_cine
                                          (Pelicula.l_generos)Enum.Parse(typeof(Pelicula.l_generos), cb_genero.SelectedItem.ToString()));
                 tb_nombre_peli.Clear();
                 tb_duracion_peli.Clear();
+                cb_pelicula.DataSource = null;
+                cb_cartelera.DataSource = null;
                 cb_pelicula.DataSource = multiplex.L_peliculas;
                 cb_cartelera.DataSource = multiplex.L_peliculas;
             }
@@ -216,6 +233,7 @@ namespace f_cine
                                          ushort.Parse(tb_sillas_preferenciales.Text));
                 tb_sillas_generales.Clear();
                 tb_sillas_preferenciales.Clear();
+                cb_sala.DataSource = null;
                 cb_sala.DataSource = multiplex.L_salas;
             }
             catch (Exception error) { MessageBox.Show("Ocurrió un error creando la sala\n" + error); }
@@ -238,8 +256,8 @@ namespace f_cine
             {
                 multiplex.Crear_cliente(uint.Parse(tb_id_t.Text), tb_nombre_t.Text, tb_numero_contacto_t.Text,
                                     tb_usuario_t.Text, tb_contrasena_t.Text);
-                l_usuarios.Add(tb_usuario_t.Text);
-                cb_usuario.DataSource = l_usuarios;
+                l_personas.Add(multiplex.L_taquilleros[multiplex.L_taquilleros.Count - 1]);
+                cb_usuario.DataSource = l_personas;
                 tb_id_t.Clear();
                 tb_nombre_t.Clear();
                 tb_numero_contacto_t.Clear();
@@ -247,6 +265,72 @@ namespace f_cine
                 tb_contrasena_t.Clear();
             }
             catch (Exception error) { MessageBox.Show("Ocurrió un error contratando al taquillero\n" + error); }
+        }
+
+        private void b_recargar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cliente_seleccionado != null)
+                {
+                    cliente_seleccionado.Recargar_saldo((Persona.l_recargas)Enum.Parse(typeof(Persona.l_recargas), cb_recarga.SelectedItem.ToString()));
+                    tb_categoriap.Text = cliente_seleccionado.Categoria.ToString();
+                    tb_saldop.Text = cliente_seleccionado.Saldo.ToString();
+                    tb_puntosp.Text = cliente_seleccionado.Puntos_acumulados.ToString();
+
+                }
+                else if (taquillero_seleccionado != null)
+                {
+                    taquillero_seleccionado.Recargar_saldo((Persona.l_recargas)Enum.Parse(typeof(Persona.l_recargas), cb_recarga.SelectedItem.ToString()));
+                    tb_categoriap.Clear();
+                    tb_saldop.Text = taquillero_seleccionado.Saldo.ToString();
+                    tb_puntosp.Clear();
+                }
+                else MessageBox.Show("Ingrese sesión");
+            }
+            catch (Exception error) { MessageBox.Show("Ocurrió un error regargando el saldo\n" + error); }
+        }
+
+        private void b_comprar_combo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cliente_seleccionado != null)
+                {
+                    cliente_seleccionado.Comprar_Combo((byte)(cb_combos.SelectedIndex - 1));
+                    tb_categoriap.Text = cliente_seleccionado.Categoria.ToString();
+                    tb_saldop.Text = cliente_seleccionado.Saldo.ToString();
+                    tb_puntosp.Text = cliente_seleccionado.Puntos_acumulados.ToString();
+                }
+                else MessageBox.Show("Inicie sesión como un cliente");
+            }
+            catch (Exception error) { MessageBox.Show("Ocurrió un error comprando el combo\n" + error); }
+        }
+
+        private void cb_cartelera_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                List<Funcion> funciones_peli = new List<Funcion>();
+                Pelicula pelicula_seleccionada = (Pelicula)cb_cartelera.SelectedItem;
+                foreach (Funcion funcion in multiplex.L_funciones)
+                {
+                    if (funcion.Pelicula.Nombre == pelicula_seleccionada.Nombre &&
+                        funcion.Pelicula.Duracion == pelicula_seleccionada.Duracion) funciones_peli.Add(funcion);
+                }
+                cb_horarios.DataSource = funciones_peli;
+            }
+            catch (Exception error) { MessageBox.Show("Ocurrió un error en el cambio de índice de cartelera\n" + error); }
+        }
+
+        private void cb_horarios_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Funcion funcion = (Funcion)cb_horarios.SelectedItem;
+            Pelicula pelicula_seleccionada = (Pelicula)cb_cartelera.SelectedItem;
+            tb_edadm.Text = Convert.ToByte(pelicula_seleccionada.Edad_minima).ToString();
+            tb_generop.Text = pelicula_seleccionada.Genero.ToString();
+            tb_duracionp.Text = pelicula_seleccionada.Duracion.ToString();
+            tb_sala.Text = funcion.Sala.ToString();
         }
     }
 }

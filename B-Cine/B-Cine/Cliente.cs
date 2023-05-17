@@ -92,7 +92,7 @@ namespace B_Cine
             try
             {
                 byte cantidad_total = (byte)(cantidad_general + cantidad_preferencial);
-                if (cantidad_total >= 1 && cantidad_total <= 10)
+                if (cantidad_total >= 1 && cantidad_total <= 20)
                 {
                     if (funcion is Funcion)
                     {
@@ -145,7 +145,7 @@ namespace B_Cine
 
         public override string ToString()
         {
-            return Nombre + " - Puntos: " + Puntos_acumulados;
+            return Usuario;
         }
     }
 }
