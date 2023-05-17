@@ -13,7 +13,7 @@ namespace B_Cine
         public enum l_categorias { regular, platino, oro }
 
         private ushort puntos_acumulados;
-        private Dictionary<byte, ushort> CombosCliente;
+        private List<uint> CombosCliente;
         private l_categorias categoria;
         private ushort precio_por_punto;
 
@@ -72,7 +72,7 @@ namespace B_Cine
         {
             try
             {
-                if (CombosCliente.ContainsKey(combo))
+                if (combo >= 0 && combo <= CombosCliente.Count - 1)
                 {
                     if (Saldo >= CombosCliente[combo])
                     {
@@ -125,19 +125,40 @@ namespace B_Cine
                 {
                     Categoria = l_categorias.regular;
                     Descuento = Multiplex.descuento_regular;
-                    CombosCliente = Multiplex.CombosMultiplex.Where(x => x.Key >= 1 && x.Key <= 3).ToDictionary(x => x.Key, x => x.Value);
+                    Precio_por_punto = Multiplex.precio_por_punto_regular;
+                    CombosCliente = new List<uint> 
+                    {
+                        Multiplex.combo1,
+                        Multiplex.combo2,
+                        Multiplex.combo3 
+                    };
                 }
                 if (Puntos_acumulados >= 100 && Puntos_acumulados < 150)
                 {
                     Categoria = l_categorias.platino;
                     Descuento = Multiplex.descuento_platino;
-                    CombosCliente = Multiplex.CombosMultiplex.Where(x => x.Key >= 1 && x.Key <= 4).ToDictionary(x => x.Key, x => x.Value);
+                    Precio_por_punto = Multiplex.precio_por_punto_platino;
+                    CombosCliente = new List<uint>
+                    {
+                        Multiplex.combo1,
+                        Multiplex.combo2,
+                        Multiplex.combo3,
+                        Multiplex.combo4
+                    };
                 }
                 if (Puntos_acumulados >= 150)
                 {
                     Categoria = l_categorias.oro;
                     Descuento = Multiplex.descuento_oro;
-                    CombosCliente = Multiplex.CombosMultiplex.Where(x => x.Key >= 1 && x.Key <= 5).ToDictionary(x => x.Key, x => x.Value);
+                    Precio_por_punto = Multiplex.precio_por_punto_oro;
+                    CombosCliente = new List<uint>
+                    {
+                        Multiplex.combo1,
+                        Multiplex.combo2,
+                        Multiplex.combo3,
+                        Multiplex.combo4,
+                        Multiplex.combo5
+                    };
                 }
             }
             catch (Exception error) { throw new Exception("Ocurrió un error verificando la categoría\n" + error); }

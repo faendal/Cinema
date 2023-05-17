@@ -254,9 +254,10 @@ namespace f_cine
         {
             try
             {
-                multiplex.Crear_cliente(uint.Parse(tb_id_t.Text), tb_nombre_t.Text, tb_numero_contacto_t.Text,
+                multiplex.Contratar_taquillero(uint.Parse(tb_id_t.Text), tb_nombre_t.Text, tb_numero_contacto_t.Text,
                                     tb_usuario_t.Text, tb_contrasena_t.Text);
                 l_personas.Add(multiplex.L_taquilleros[multiplex.L_taquilleros.Count - 1]);
+                cb_usuario.DataSource = null;
                 cb_usuario.DataSource = l_personas;
                 tb_id_t.Clear();
                 tb_nombre_t.Clear();
@@ -297,7 +298,7 @@ namespace f_cine
             {
                 if (cliente_seleccionado != null)
                 {
-                    cliente_seleccionado.Comprar_Combo((byte)(cb_combos.SelectedIndex - 1));
+                    cliente_seleccionado.Comprar_Combo((byte)(cb_combos.SelectedIndex));
                     tb_categoriap.Text = cliente_seleccionado.Categoria.ToString();
                     tb_saldop.Text = cliente_seleccionado.Saldo.ToString();
                     tb_puntosp.Text = cliente_seleccionado.Puntos_acumulados.ToString();

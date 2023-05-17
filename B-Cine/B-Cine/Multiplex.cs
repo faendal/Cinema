@@ -26,14 +26,11 @@ namespace B_Cine
         public static readonly ushort precio_por_punto_regular = 10000;
         public static readonly ushort precio_por_punto_platino = 5000;
         public static readonly ushort precio_por_punto_oro = 2000;
-        public static readonly Dictionary<byte, ushort> CombosMultiplex = new Dictionary<byte, ushort>
-        {
-            {1, 25000},
-            {2, 30000},
-            {3, 40000},
-            {4, 50000},
-            {5, 60000}
-        };
+        public static readonly uint combo1 = 25000;
+        public static readonly uint combo2 = 30000;
+        public static readonly uint combo3 = 40000;
+        public static readonly uint combo4 = 50000;
+        public static readonly uint combo5 = 60000;
 
         private List<Sala> l_salas;
         private List<Cliente> l_clientes;
