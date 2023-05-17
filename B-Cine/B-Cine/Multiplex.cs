@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace B_Cine
 {
-    internal class Multiplex
+    public class Multiplex
     {
         public static readonly ushort min_duracion = 45;
         public static readonly ushort max_duracion = 500;
@@ -56,57 +56,52 @@ namespace B_Cine
         public List<Pelicula> L_peliculas { get => l_peliculas; }
         public List<Taquillero> L_taquilleros { get => l_taquilleros; }
 
-        public Taquillero Contratar_taquillero(uint id, string nombre, string numero_contacto, string usuario, string contrasena)
+        public void Contratar_taquillero(uint id, string nombre, string numero_contacto, string usuario, string contrasena)
         {
             try
             {
                 Taquillero trabajador = new Taquillero(id, nombre, numero_contacto, usuario, contrasena);
                 l_taquilleros.Add(trabajador);
-                return trabajador;
             }
             catch(Exception error) { throw new Exception("Ocurrió un error contratando al taquillero\n" + error); }
         }
 
-        public Cliente Crear_cliente(uint id, string nombre, string numero_contacto, string usuario, string contrasena)
+        public void Crear_cliente(uint id, string nombre, string numero_contacto, string usuario, string contrasena)
         {
             try
             {
                 Cliente nuevo_cliente = new Cliente(id, nombre, numero_contacto, usuario, contrasena);
                 l_clientes.Add(nuevo_cliente);
-                return nuevo_cliente;
             }
             catch (Exception error) { throw new Exception("Ocurrió un error contratando agregando un nuevo cliente\n" + error); }
         }
 
-        public Sala Construir_sala(ushort sillas_generales, ushort sillas_preferenciales)
+        public void Construir_sala(ushort sillas_generales, ushort sillas_preferenciales)
         {
             try
             {
                 Sala nueva_sala = new Sala(sillas_generales, sillas_preferenciales);
                 l_salas.Add(nueva_sala); 
-                return nueva_sala;
             }
             catch (Exception error) { throw new Exception("Ocurrió un error construyendo la sala\n" + error); }
         }
 
-        public Funcion Crear_funcion(DateTime fecha_hora, Sala sala, Pelicula pelicula)
+        public void Crear_funcion(DateTime fecha_hora, Sala sala, Pelicula pelicula)
         {
             try
             {
                 Funcion nueva_funcion = new Funcion(fecha_hora, sala, pelicula);
                 l_funciones.Add(nueva_funcion);
-                return nueva_funcion;
             }
             catch (Exception error) { throw new Exception("Ocurrió un error creando la función\n" + error); }
         }
 
-        public Pelicula Pasar_pelicula(string nombre, TimeSpan duracion, Pelicula.l_edades_minimas edad_minima, Pelicula.l_generos genero)
+        public void Pasar_pelicula(string nombre, TimeSpan duracion, Pelicula.l_edades_minimas edad_minima, Pelicula.l_generos genero)
         {
             try
             {
                 Pelicula nueva_peli = new Pelicula(nombre, duracion, edad_minima, genero);
                 l_peliculas.Add(nueva_peli);
-                return nueva_peli;
             }
             catch (Exception error) { throw new Exception("Ocurrió un error creando la película\n" + error); }
         }

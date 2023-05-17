@@ -30,8 +30,8 @@
         {
             b_login = new Button();
             tb_sala = new TextBox();
-            cb_svip = new ComboBox();
-            cb_sgeneral = new ComboBox();
+            cb_preferencial = new ComboBox();
+            cb_general = new ComboBox();
             cb_horarios = new ComboBox();
             cb_cartelera = new ComboBox();
             cb_combos = new ComboBox();
@@ -55,9 +55,9 @@
             label13 = new Label();
             tb_id = new TextBox();
             groupBox1 = new GroupBox();
+            cb_usuario = new ComboBox();
             tb_contrasena_lg = new TextBox();
             label19 = new Label();
-            tb_usuario_lg = new TextBox();
             label18 = new Label();
             groupBox2 = new GroupBox();
             label12 = new Label();
@@ -73,48 +73,48 @@
             groupBox4 = new GroupBox();
             label3 = new Label();
             b_recargar = new Button();
-            comboBox1 = new ComboBox();
+            cb_recarga = new ComboBox();
             b_comprar_combo = new Button();
             label7 = new Label();
             label6 = new Label();
             label5 = new Label();
             groupBox5 = new GroupBox();
-            label4 = new Label();
-            tb_nombre_peli = new TextBox();
-            tb_duracion_peli = new TextBox();
-            label8 = new Label();
-            label9 = new Label();
-            label24 = new Label();
-            label25 = new Label();
-            b_crear_pelicula = new Button();
-            b_crear_sala = new Button();
-            label26 = new Label();
-            label27 = new Label();
-            label28 = new Label();
-            tb_sillas_generales = new TextBox();
-            tb_sillas_preferenciales = new TextBox();
-            cb_genero = new ComboBox();
-            cb_edad_minima = new ComboBox();
-            label29 = new Label();
-            label30 = new Label();
-            label31 = new Label();
-            label32 = new Label();
-            b_crear_funcion = new Button();
-            dateTimePicker1 = new DateTimePicker();
-            cb_sala = new ComboBox();
-            cb_pelicula = new ComboBox();
-            label33 = new Label();
-            label34 = new Label();
-            label35 = new Label();
-            label36 = new Label();
-            label37 = new Label();
-            label38 = new Label();
-            tb_id_t = new TextBox();
-            tb_nombre_t = new TextBox();
-            tb_numero_contacto_t = new TextBox();
+            b_contratar = new Button();
             tb_contrasena_t = new TextBox();
             tb_usuario_t = new TextBox();
-            b_contratar = new Button();
+            label38 = new Label();
+            label37 = new Label();
+            tb_numero_contacto_t = new TextBox();
+            label36 = new Label();
+            tb_nombre_t = new TextBox();
+            label35 = new Label();
+            tb_id_t = new TextBox();
+            label34 = new Label();
+            label33 = new Label();
+            cb_pelicula = new ComboBox();
+            cb_sala = new ComboBox();
+            dt_fecha_hora = new DateTimePicker();
+            b_crear_funcion = new Button();
+            label32 = new Label();
+            label31 = new Label();
+            label30 = new Label();
+            label29 = new Label();
+            cb_edad_minima = new ComboBox();
+            cb_genero = new ComboBox();
+            tb_sillas_preferenciales = new TextBox();
+            tb_sillas_generales = new TextBox();
+            label28 = new Label();
+            label27 = new Label();
+            label26 = new Label();
+            b_crear_sala = new Button();
+            b_crear_pelicula = new Button();
+            label25 = new Label();
+            label24 = new Label();
+            label9 = new Label();
+            label8 = new Label();
+            tb_duracion_peli = new TextBox();
+            tb_nombre_peli = new TextBox();
+            label4 = new Label();
             gb_registro.SuspendLayout();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -141,23 +141,23 @@
             tb_sala.Size = new Size(212, 27);
             tb_sala.TabIndex = 19;
             // 
-            // cb_svip
+            // cb_preferencial
             // 
-            cb_svip.FormattingEnabled = true;
-            cb_svip.Location = new Point(252, 54);
-            cb_svip.Name = "cb_svip";
-            cb_svip.Size = new Size(216, 28);
-            cb_svip.TabIndex = 30;
-            cb_svip.SelectedIndexChanged += cb_svip_SelectedIndexChanged;
+            cb_preferencial.FormattingEnabled = true;
+            cb_preferencial.Location = new Point(252, 54);
+            cb_preferencial.Name = "cb_preferencial";
+            cb_preferencial.Size = new Size(216, 28);
+            cb_preferencial.TabIndex = 30;
+            cb_preferencial.SelectedIndexChanged += cb_svip_SelectedIndexChanged;
             // 
-            // cb_sgeneral
+            // cb_general
             // 
-            cb_sgeneral.FormattingEnabled = true;
-            cb_sgeneral.Location = new Point(6, 54);
-            cb_sgeneral.Name = "cb_sgeneral";
-            cb_sgeneral.Size = new Size(189, 28);
-            cb_sgeneral.TabIndex = 29;
-            cb_sgeneral.SelectedIndexChanged += cb_sgeneral_SelectedIndexChanged;
+            cb_general.FormattingEnabled = true;
+            cb_general.Location = new Point(6, 54);
+            cb_general.Name = "cb_general";
+            cb_general.Size = new Size(189, 28);
+            cb_general.TabIndex = 29;
+            cb_general.SelectedIndexChanged += cb_sgeneral_SelectedIndexChanged;
             // 
             // cb_horarios
             // 
@@ -270,6 +270,7 @@
             b_registro.TabIndex = 45;
             b_registro.Text = "Registrar Cliente";
             b_registro.UseVisualStyleBackColor = true;
+            b_registro.Click += b_registro_Click;
             // 
             // tb_contrasena
             // 
@@ -353,9 +354,9 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(cb_usuario);
             groupBox1.Controls.Add(tb_contrasena_lg);
             groupBox1.Controls.Add(label19);
-            groupBox1.Controls.Add(tb_usuario_lg);
             groupBox1.Controls.Add(label18);
             groupBox1.Controls.Add(b_login);
             groupBox1.Location = new Point(12, 436);
@@ -364,6 +365,14 @@
             groupBox1.TabIndex = 45;
             groupBox1.TabStop = false;
             groupBox1.Text = "Inicio de sesión";
+            // 
+            // cb_usuario
+            // 
+            cb_usuario.FormattingEnabled = true;
+            cb_usuario.Location = new Point(6, 61);
+            cb_usuario.Name = "cb_usuario";
+            cb_usuario.Size = new Size(215, 28);
+            cb_usuario.TabIndex = 50;
             // 
             // tb_contrasena_lg
             // 
@@ -380,13 +389,6 @@
             label19.Size = new Size(83, 20);
             label19.TabIndex = 47;
             label19.Text = "Contraseña";
-            // 
-            // tb_usuario_lg
-            // 
-            tb_usuario_lg.Location = new Point(6, 65);
-            tb_usuario_lg.Name = "tb_usuario_lg";
-            tb_usuario_lg.Size = new Size(215, 27);
-            tb_usuario_lg.TabIndex = 46;
             // 
             // label18
             // 
@@ -411,7 +413,6 @@
             groupBox2.TabIndex = 46;
             groupBox2.TabStop = false;
             groupBox2.Text = "Información cliente";
-            groupBox2.Visible = false;
             // 
             // label12
             // 
@@ -519,13 +520,13 @@
             // 
             groupBox4.Controls.Add(label3);
             groupBox4.Controls.Add(b_recargar);
-            groupBox4.Controls.Add(comboBox1);
+            groupBox4.Controls.Add(cb_recarga);
             groupBox4.Controls.Add(b_comprar_combo);
             groupBox4.Controls.Add(label7);
             groupBox4.Controls.Add(label6);
             groupBox4.Controls.Add(label5);
-            groupBox4.Controls.Add(cb_sgeneral);
-            groupBox4.Controls.Add(cb_svip);
+            groupBox4.Controls.Add(cb_general);
+            groupBox4.Controls.Add(cb_preferencial);
             groupBox4.Controls.Add(b_comprar);
             groupBox4.Controls.Add(cb_combos);
             groupBox4.Location = new Point(256, 268);
@@ -553,13 +554,13 @@
             b_recargar.Text = "Recargar Saldo";
             b_recargar.UseVisualStyleBackColor = true;
             // 
-            // comboBox1
+            // cb_recarga
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(6, 183);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(189, 28);
-            comboBox1.TabIndex = 35;
+            cb_recarga.FormattingEnabled = true;
+            cb_recarga.Location = new Point(6, 183);
+            cb_recarga.Name = "cb_recarga";
+            cb_recarga.Size = new Size(189, 28);
+            cb_recarga.TabIndex = 35;
             // 
             // b_comprar_combo
             // 
@@ -613,7 +614,7 @@
             groupBox5.Controls.Add(label33);
             groupBox5.Controls.Add(cb_pelicula);
             groupBox5.Controls.Add(cb_sala);
-            groupBox5.Controls.Add(dateTimePicker1);
+            groupBox5.Controls.Add(dt_fecha_hora);
             groupBox5.Controls.Add(b_crear_funcion);
             groupBox5.Controls.Add(label32);
             groupBox5.Controls.Add(label31);
@@ -642,282 +643,15 @@
             groupBox5.TabStop = false;
             groupBox5.Text = "Panel de control";
             // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(6, 36);
-            label4.Name = "label4";
-            label4.Size = new Size(100, 20);
-            label4.TabIndex = 0;
-            label4.Text = "Crear película";
-            // 
-            // tb_nombre_peli
-            // 
-            tb_nombre_peli.Location = new Point(6, 86);
-            tb_nombre_peli.Name = "tb_nombre_peli";
-            tb_nombre_peli.Size = new Size(162, 27);
-            tb_nombre_peli.TabIndex = 1;
-            // 
-            // tb_duracion_peli
-            // 
-            tb_duracion_peli.Location = new Point(200, 86);
-            tb_duracion_peli.Name = "tb_duracion_peli";
-            tb_duracion_peli.Size = new Size(70, 27);
-            tb_duracion_peli.TabIndex = 2;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Location = new Point(7, 63);
-            label8.Name = "label8";
-            label8.Size = new Size(64, 20);
-            label8.TabIndex = 5;
-            label8.Text = "Nombre";
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Location = new Point(199, 63);
-            label9.Name = "label9";
-            label9.Size = new Size(69, 20);
-            label9.TabIndex = 6;
-            label9.Text = "Duracion";
-            // 
-            // label24
-            // 
-            label24.AutoSize = true;
-            label24.Location = new Point(314, 63);
-            label24.Name = "label24";
-            label24.Size = new Size(97, 20);
-            label24.TabIndex = 7;
-            label24.Text = "Edad mínima";
-            // 
-            // label25
-            // 
-            label25.AutoSize = true;
-            label25.Location = new Point(6, 124);
-            label25.Name = "label25";
-            label25.Size = new Size(57, 20);
-            label25.TabIndex = 8;
-            label25.Text = "Género";
-            // 
-            // b_crear_pelicula
-            // 
-            b_crear_pelicula.Location = new Point(199, 147);
-            b_crear_pelicula.Name = "b_crear_pelicula";
-            b_crear_pelicula.Size = new Size(212, 29);
-            b_crear_pelicula.TabIndex = 9;
-            b_crear_pelicula.Text = "Crear Película";
-            b_crear_pelicula.UseVisualStyleBackColor = true;
-            // 
-            // b_crear_sala
-            // 
-            b_crear_sala.Location = new Point(276, 242);
-            b_crear_sala.Name = "b_crear_sala";
-            b_crear_sala.Size = new Size(148, 29);
-            b_crear_sala.TabIndex = 10;
-            b_crear_sala.Text = "Crear Sala";
-            b_crear_sala.UseVisualStyleBackColor = true;
-            // 
-            // label26
-            // 
-            label26.AutoSize = true;
-            label26.Location = new Point(6, 189);
-            label26.Name = "label26";
-            label26.Size = new Size(76, 20);
-            label26.TabIndex = 11;
-            label26.Text = "Crear Sala";
-            // 
-            // label27
-            // 
-            label27.AutoSize = true;
-            label27.Location = new Point(6, 220);
-            label27.Name = "label27";
-            label27.Size = new Size(97, 20);
-            label27.TabIndex = 12;
-            label27.Text = "Sillas general";
-            // 
-            // label28
-            // 
-            label28.AutoSize = true;
-            label28.Location = new Point(144, 220);
-            label28.Name = "label28";
-            label28.Size = new Size(126, 20);
-            label28.TabIndex = 13;
-            label28.Text = "Sillas preferencial";
-            // 
-            // tb_sillas_generales
-            // 
-            tb_sillas_generales.Location = new Point(6, 243);
-            tb_sillas_generales.Name = "tb_sillas_generales";
-            tb_sillas_generales.Size = new Size(125, 27);
-            tb_sillas_generales.TabIndex = 14;
-            // 
-            // tb_sillas_preferenciales
-            // 
-            tb_sillas_preferenciales.Location = new Point(144, 243);
-            tb_sillas_preferenciales.Name = "tb_sillas_preferenciales";
-            tb_sillas_preferenciales.Size = new Size(126, 27);
-            tb_sillas_preferenciales.TabIndex = 15;
-            // 
-            // cb_genero
-            // 
-            cb_genero.FormattingEnabled = true;
-            cb_genero.Location = new Point(6, 147);
-            cb_genero.Name = "cb_genero";
-            cb_genero.Size = new Size(151, 28);
-            cb_genero.TabIndex = 16;
-            // 
-            // cb_edad_minima
-            // 
-            cb_edad_minima.FormattingEnabled = true;
-            cb_edad_minima.Location = new Point(314, 86);
-            cb_edad_minima.Name = "cb_edad_minima";
-            cb_edad_minima.Size = new Size(97, 28);
-            cb_edad_minima.TabIndex = 17;
-            // 
-            // label29
-            // 
-            label29.AutoSize = true;
-            label29.Location = new Point(7, 286);
-            label29.Name = "label29";
-            label29.Size = new Size(99, 20);
-            label29.TabIndex = 18;
-            label29.Text = "Crear Funcion";
-            // 
-            // label30
-            // 
-            label30.AutoSize = true;
-            label30.Location = new Point(6, 318);
-            label30.Name = "label30";
-            label30.Size = new Size(92, 20);
-            label30.TabIndex = 19;
-            label30.Text = "Fecha y hora";
-            // 
-            // label31
-            // 
-            label31.AutoSize = true;
-            label31.Location = new Point(276, 318);
-            label31.Name = "label31";
-            label31.Size = new Size(37, 20);
-            label31.TabIndex = 20;
-            label31.Text = "Sala";
-            // 
-            // label32
-            // 
-            label32.AutoSize = true;
-            label32.Location = new Point(7, 395);
-            label32.Name = "label32";
-            label32.Size = new Size(59, 20);
-            label32.TabIndex = 21;
-            label32.Text = "Película";
-            // 
-            // b_crear_funcion
-            // 
-            b_crear_funcion.Location = new Point(199, 417);
-            b_crear_funcion.Name = "b_crear_funcion";
-            b_crear_funcion.Size = new Size(212, 29);
-            b_crear_funcion.TabIndex = 22;
-            b_crear_funcion.Text = "Crear Función";
-            b_crear_funcion.UseVisualStyleBackColor = true;
-            // 
-            // dateTimePicker1
-            // 
-            dateTimePicker1.Location = new Point(7, 351);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(250, 27);
-            dateTimePicker1.TabIndex = 23;
-            // 
-            // cb_sala
-            // 
-            cb_sala.FormattingEnabled = true;
-            cb_sala.Location = new Point(276, 353);
-            cb_sala.Name = "cb_sala";
-            cb_sala.Size = new Size(148, 28);
-            cb_sala.TabIndex = 24;
-            // 
-            // cb_pelicula
-            // 
-            cb_pelicula.FormattingEnabled = true;
-            cb_pelicula.Location = new Point(7, 418);
-            cb_pelicula.Name = "cb_pelicula";
-            cb_pelicula.Size = new Size(161, 28);
-            cb_pelicula.TabIndex = 25;
-            // 
-            // label33
-            // 
-            label33.AutoSize = true;
-            label33.Location = new Point(6, 462);
-            label33.Name = "label33";
-            label33.Size = new Size(140, 20);
-            label33.TabIndex = 26;
-            label33.Text = "Contratar Taquillero";
-            // 
-            // label34
-            // 
-            label34.AutoSize = true;
-            label34.Location = new Point(6, 488);
-            label34.Name = "label34";
-            label34.Size = new Size(22, 20);
-            label34.TabIndex = 27;
-            label34.Text = "Id";
-            // 
-            // label35
-            // 
-            label35.AutoSize = true;
-            label35.Location = new Point(276, 486);
-            label35.Name = "label35";
-            label35.Size = new Size(146, 20);
-            label35.TabIndex = 28;
-            label35.Text = "Numero de contacto";
-            // 
-            // label36
-            // 
-            label36.AutoSize = true;
-            label36.Location = new Point(162, 556);
-            label36.Name = "label36";
-            label36.Size = new Size(83, 20);
-            label36.TabIndex = 29;
-            label36.Text = "Contraseña";
-            // 
-            // label37
-            // 
-            label37.AutoSize = true;
-            label37.Location = new Point(144, 488);
-            label37.Name = "label37";
-            label37.Size = new Size(64, 20);
-            label37.TabIndex = 30;
-            label37.Text = "Nombre";
-            // 
-            // label38
-            // 
-            label38.AutoSize = true;
-            label38.Location = new Point(7, 556);
-            label38.Name = "label38";
-            label38.Size = new Size(137, 20);
-            label38.TabIndex = 31;
-            label38.Text = "Nombre de usuario";
-            // 
-            // tb_id_t
-            // 
-            tb_id_t.Location = new Point(7, 518);
-            tb_id_t.Name = "tb_id_t";
-            tb_id_t.Size = new Size(99, 27);
-            tb_id_t.TabIndex = 50;
-            // 
-            // tb_nombre_t
-            // 
-            tb_nombre_t.Location = new Point(144, 518);
-            tb_nombre_t.Name = "tb_nombre_t";
-            tb_nombre_t.Size = new Size(113, 27);
-            tb_nombre_t.TabIndex = 51;
-            // 
-            // tb_numero_contacto_t
-            // 
-            tb_numero_contacto_t.Location = new Point(276, 518);
-            tb_numero_contacto_t.Name = "tb_numero_contacto_t";
-            tb_numero_contacto_t.Size = new Size(148, 27);
-            tb_numero_contacto_t.TabIndex = 52;
+            // b_contratar
+            // 
+            b_contratar.Location = new Point(293, 584);
+            b_contratar.Name = "b_contratar";
+            b_contratar.Size = new Size(131, 29);
+            b_contratar.TabIndex = 50;
+            b_contratar.Text = "Contratar";
+            b_contratar.UseVisualStyleBackColor = true;
+            b_contratar.Click += b_contratar_Click;
             // 
             // tb_contrasena_t
             // 
@@ -933,14 +667,285 @@
             tb_usuario_t.Size = new Size(124, 27);
             tb_usuario_t.TabIndex = 54;
             // 
-            // b_contratar
+            // label38
             // 
-            b_contratar.Location = new Point(293, 584);
-            b_contratar.Name = "b_contratar";
-            b_contratar.Size = new Size(131, 29);
-            b_contratar.TabIndex = 50;
-            b_contratar.Text = "Contratar";
-            b_contratar.UseVisualStyleBackColor = true;
+            label38.AutoSize = true;
+            label38.Location = new Point(7, 556);
+            label38.Name = "label38";
+            label38.Size = new Size(137, 20);
+            label38.TabIndex = 31;
+            label38.Text = "Nombre de usuario";
+            // 
+            // label37
+            // 
+            label37.AutoSize = true;
+            label37.Location = new Point(144, 488);
+            label37.Name = "label37";
+            label37.Size = new Size(64, 20);
+            label37.TabIndex = 30;
+            label37.Text = "Nombre";
+            // 
+            // tb_numero_contacto_t
+            // 
+            tb_numero_contacto_t.Location = new Point(276, 518);
+            tb_numero_contacto_t.Name = "tb_numero_contacto_t";
+            tb_numero_contacto_t.Size = new Size(148, 27);
+            tb_numero_contacto_t.TabIndex = 52;
+            // 
+            // label36
+            // 
+            label36.AutoSize = true;
+            label36.Location = new Point(162, 556);
+            label36.Name = "label36";
+            label36.Size = new Size(83, 20);
+            label36.TabIndex = 29;
+            label36.Text = "Contraseña";
+            // 
+            // tb_nombre_t
+            // 
+            tb_nombre_t.Location = new Point(144, 518);
+            tb_nombre_t.Name = "tb_nombre_t";
+            tb_nombre_t.Size = new Size(113, 27);
+            tb_nombre_t.TabIndex = 51;
+            // 
+            // label35
+            // 
+            label35.AutoSize = true;
+            label35.Location = new Point(276, 486);
+            label35.Name = "label35";
+            label35.Size = new Size(146, 20);
+            label35.TabIndex = 28;
+            label35.Text = "Numero de contacto";
+            // 
+            // tb_id_t
+            // 
+            tb_id_t.Location = new Point(7, 518);
+            tb_id_t.Name = "tb_id_t";
+            tb_id_t.Size = new Size(99, 27);
+            tb_id_t.TabIndex = 50;
+            // 
+            // label34
+            // 
+            label34.AutoSize = true;
+            label34.Location = new Point(6, 488);
+            label34.Name = "label34";
+            label34.Size = new Size(22, 20);
+            label34.TabIndex = 27;
+            label34.Text = "Id";
+            // 
+            // label33
+            // 
+            label33.AutoSize = true;
+            label33.Location = new Point(6, 462);
+            label33.Name = "label33";
+            label33.Size = new Size(140, 20);
+            label33.TabIndex = 26;
+            label33.Text = "Contratar Taquillero";
+            // 
+            // cb_pelicula
+            // 
+            cb_pelicula.FormattingEnabled = true;
+            cb_pelicula.Location = new Point(7, 418);
+            cb_pelicula.Name = "cb_pelicula";
+            cb_pelicula.Size = new Size(161, 28);
+            cb_pelicula.TabIndex = 25;
+            // 
+            // cb_sala
+            // 
+            cb_sala.FormattingEnabled = true;
+            cb_sala.Location = new Point(276, 353);
+            cb_sala.Name = "cb_sala";
+            cb_sala.Size = new Size(148, 28);
+            cb_sala.TabIndex = 24;
+            // 
+            // dt_fecha_hora
+            // 
+            dt_fecha_hora.Location = new Point(7, 351);
+            dt_fecha_hora.Name = "dt_fecha_hora";
+            dt_fecha_hora.Size = new Size(250, 27);
+            dt_fecha_hora.TabIndex = 23;
+            // 
+            // b_crear_funcion
+            // 
+            b_crear_funcion.Location = new Point(199, 417);
+            b_crear_funcion.Name = "b_crear_funcion";
+            b_crear_funcion.Size = new Size(212, 29);
+            b_crear_funcion.TabIndex = 22;
+            b_crear_funcion.Text = "Crear Función";
+            b_crear_funcion.UseVisualStyleBackColor = true;
+            b_crear_funcion.Click += b_crear_funcion_Click;
+            // 
+            // label32
+            // 
+            label32.AutoSize = true;
+            label32.Location = new Point(7, 395);
+            label32.Name = "label32";
+            label32.Size = new Size(59, 20);
+            label32.TabIndex = 21;
+            label32.Text = "Película";
+            // 
+            // label31
+            // 
+            label31.AutoSize = true;
+            label31.Location = new Point(276, 318);
+            label31.Name = "label31";
+            label31.Size = new Size(37, 20);
+            label31.TabIndex = 20;
+            label31.Text = "Sala";
+            // 
+            // label30
+            // 
+            label30.AutoSize = true;
+            label30.Location = new Point(6, 318);
+            label30.Name = "label30";
+            label30.Size = new Size(92, 20);
+            label30.TabIndex = 19;
+            label30.Text = "Fecha y hora";
+            // 
+            // label29
+            // 
+            label29.AutoSize = true;
+            label29.Location = new Point(7, 286);
+            label29.Name = "label29";
+            label29.Size = new Size(99, 20);
+            label29.TabIndex = 18;
+            label29.Text = "Crear Funcion";
+            // 
+            // cb_edad_minima
+            // 
+            cb_edad_minima.FormattingEnabled = true;
+            cb_edad_minima.Location = new Point(314, 86);
+            cb_edad_minima.Name = "cb_edad_minima";
+            cb_edad_minima.Size = new Size(97, 28);
+            cb_edad_minima.TabIndex = 17;
+            // 
+            // cb_genero
+            // 
+            cb_genero.FormattingEnabled = true;
+            cb_genero.Location = new Point(6, 147);
+            cb_genero.Name = "cb_genero";
+            cb_genero.Size = new Size(151, 28);
+            cb_genero.TabIndex = 16;
+            // 
+            // tb_sillas_preferenciales
+            // 
+            tb_sillas_preferenciales.Location = new Point(144, 243);
+            tb_sillas_preferenciales.Name = "tb_sillas_preferenciales";
+            tb_sillas_preferenciales.Size = new Size(126, 27);
+            tb_sillas_preferenciales.TabIndex = 15;
+            // 
+            // tb_sillas_generales
+            // 
+            tb_sillas_generales.Location = new Point(6, 243);
+            tb_sillas_generales.Name = "tb_sillas_generales";
+            tb_sillas_generales.Size = new Size(125, 27);
+            tb_sillas_generales.TabIndex = 14;
+            // 
+            // label28
+            // 
+            label28.AutoSize = true;
+            label28.Location = new Point(144, 220);
+            label28.Name = "label28";
+            label28.Size = new Size(126, 20);
+            label28.TabIndex = 13;
+            label28.Text = "Sillas preferencial";
+            // 
+            // label27
+            // 
+            label27.AutoSize = true;
+            label27.Location = new Point(6, 220);
+            label27.Name = "label27";
+            label27.Size = new Size(97, 20);
+            label27.TabIndex = 12;
+            label27.Text = "Sillas general";
+            // 
+            // label26
+            // 
+            label26.AutoSize = true;
+            label26.Location = new Point(6, 189);
+            label26.Name = "label26";
+            label26.Size = new Size(76, 20);
+            label26.TabIndex = 11;
+            label26.Text = "Crear Sala";
+            // 
+            // b_crear_sala
+            // 
+            b_crear_sala.Location = new Point(276, 242);
+            b_crear_sala.Name = "b_crear_sala";
+            b_crear_sala.Size = new Size(148, 29);
+            b_crear_sala.TabIndex = 10;
+            b_crear_sala.Text = "Crear Sala";
+            b_crear_sala.UseVisualStyleBackColor = true;
+            b_crear_sala.Click += b_crear_sala_Click;
+            // 
+            // b_crear_pelicula
+            // 
+            b_crear_pelicula.Location = new Point(199, 147);
+            b_crear_pelicula.Name = "b_crear_pelicula";
+            b_crear_pelicula.Size = new Size(212, 29);
+            b_crear_pelicula.TabIndex = 9;
+            b_crear_pelicula.Text = "Crear Película";
+            b_crear_pelicula.UseVisualStyleBackColor = true;
+            b_crear_pelicula.Click += b_crear_pelicula_Click;
+            // 
+            // label25
+            // 
+            label25.AutoSize = true;
+            label25.Location = new Point(6, 124);
+            label25.Name = "label25";
+            label25.Size = new Size(57, 20);
+            label25.TabIndex = 8;
+            label25.Text = "Género";
+            // 
+            // label24
+            // 
+            label24.AutoSize = true;
+            label24.Location = new Point(314, 63);
+            label24.Name = "label24";
+            label24.Size = new Size(97, 20);
+            label24.TabIndex = 7;
+            label24.Text = "Edad mínima";
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(199, 63);
+            label9.Name = "label9";
+            label9.Size = new Size(69, 20);
+            label9.TabIndex = 6;
+            label9.Text = "Duracion";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(7, 63);
+            label8.Name = "label8";
+            label8.Size = new Size(64, 20);
+            label8.TabIndex = 5;
+            label8.Text = "Nombre";
+            // 
+            // tb_duracion_peli
+            // 
+            tb_duracion_peli.Location = new Point(200, 86);
+            tb_duracion_peli.Name = "tb_duracion_peli";
+            tb_duracion_peli.Size = new Size(70, 27);
+            tb_duracion_peli.TabIndex = 2;
+            // 
+            // tb_nombre_peli
+            // 
+            tb_nombre_peli.Location = new Point(6, 86);
+            tb_nombre_peli.Name = "tb_nombre_peli";
+            tb_nombre_peli.Size = new Size(162, 27);
+            tb_nombre_peli.TabIndex = 1;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(6, 36);
+            label4.Name = "label4";
+            label4.Size = new Size(100, 20);
+            label4.TabIndex = 0;
+            label4.Text = "Crear película";
             // 
             // Principal
             // 
@@ -976,8 +981,8 @@
         private ComboBox cb_genero;
         private ComboBox cb_edad_minima;
         private ComboBox comboBox4;
-        private ComboBox cb_svip;
-        private ComboBox cb_sgeneral;
+        private ComboBox cb_preferencial;
+        private ComboBox cb_general;
         private ComboBox cb_combos;
         private Button b_comprar;
         private TextBox tb_categoriap;
@@ -1004,7 +1009,6 @@
         private GroupBox groupBox1;
         private TextBox tb_contrasena_lg;
         private Label label19;
-        private TextBox tb_usuario_lg;
         private Label label18;
         private GroupBox groupBox2;
         private Label label12;
@@ -1024,7 +1028,7 @@
         private Label label5;
         private Label label3;
         private Button b_recargar;
-        private ComboBox comboBox1;
+        private ComboBox cb_recarga;
         private GroupBox groupBox5;
         private Button b_crear_pelicula;
         private Label label25;
@@ -1048,7 +1052,7 @@
         private Label label33;
         private ComboBox cb_pelicula;
         private ComboBox cb_sala;
-        private DateTimePicker dateTimePicker1;
+        private DateTimePicker dt_fecha_hora;
         private Button b_crear_funcion;
         private Label label32;
         private Label label31;
@@ -1060,5 +1064,6 @@
         private TextBox tb_numero_contacto_t;
         private TextBox tb_nombre_t;
         private TextBox tb_id_t;
+        private ComboBox cb_usuario;
     }
 }
